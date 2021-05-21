@@ -1,1 +1,1 @@
-# Clasificación de las señales
+# Clasificación de señales
