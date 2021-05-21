@@ -1,10 +1,14 @@
 # -*- coding: utf-8 -*-
+
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 import os
 
+# devuelve un diccionario
+# key = tipo de señal, value = [] de los directorios con las señales de ese tipo
+# recibe un fichero de texto <tipo>;<directorio1>;<directorio2> ... ;<directorioN>
 def entradasToMap(file_path):
   f = open(file_path, mode='r', encoding='utf-8')
   map_entradas = {}
@@ -16,11 +20,14 @@ def entradasToMap(file_path):
     map_entradas[tipo] = ficheros[1:]
   f.close()
   return map_entradas
-  
+    
+
 # devuelve las rutas todas las imagenes de entrenamiento que hay dentro del directorio y los subdirectorios
-# devuelve los valores de classificacion de todas las imagenes de entrenamiento 
-# recibe la ruta del directorio
-def getSignalImagePaths(dir_path):
+# devuelve los valores de classificacion de todas las imagenes de entrenamiento
+# con tres tipos de señales 1:prohibición, 2:peligro, 2:stop, 4: ninguno de estos
+# recibe la ruta del directorio que contiene las señales de cada tipo separadas en subdirectorios
+# la separación de las señales debe estar indicada correctamente en entradas.txt
+def getSignalImagePaths_3types(dir_path):
   img_signal_paths = []
   img_signal_types = []
   aux = entradasToMap("entradas.txt")
@@ -34,6 +41,25 @@ def getSignalImagePaths(dir_path):
       else:
         img_signal_paths.append(os.path.join(path,name))
         img_signal_types.append(4)
+  return img_signal_paths, img_signal_types
+
+# devuelve las rutas todas las imagenes de entrenamiento que hay dentro del directorio y los subdirectorios
+# devuelve los valores de classificacion de todas las imagenes de entrenamiento 
+# con 42 tipos de señales
+# recibe la ruta del directorio que contiene las señales de cada tipo separadas en subdirectorios
+def getSignalImagePaths(dir_path):
+  img_signal_paths = []
+  img_signal_types = []
+  # https://stackoverflow.com/questions/2909975/python-list-directory-subdirectory-and-files
+  for path, subdirs, files in os.walk(dir_path):
+    for name in files:
+      subdir = os.path.basename(path)
+      img_signal_paths.append(os.path.join(path,name))
+      tipo = int(subdir)+1
+      valor = str(tipo)
+      if tipo < 10:
+        valor = "0" + valor
+      img_signal_types.append(valor)
   return img_signal_paths, img_signal_types
 
 # muestra imagen con titulo
@@ -63,6 +89,7 @@ def applyHOG(img):
 
 # reduccion de la dimension mediante LDA
 # devuelve el analizador LDA
+# recibe los datos y los valores de clasificación de esos datos
 def trainLDA(data, answers):
   lda = LinearDiscriminantAnalysis()
   lda.fit(data, answers)
