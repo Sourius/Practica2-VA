@@ -40,5 +40,6 @@ class Clasificador:
 
     def predictAll(self, imgs, answers):
         hog_values = self.applyHOGAll(imgs)
-        predictions = np.array(self.lda.predict(hog_values))
+        predictions = self.lda.predict(hog_values)
+
         return predictions, getPrecision(answers, predictions)

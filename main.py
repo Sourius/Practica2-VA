@@ -7,7 +7,7 @@ if __name__ == '__main__':
     test_images, test_answers = ImageUtils.getImages('test_reconocimiento', False)
     clf.train(train_images, train_answers)
     _, precision = clf.predictAll(test_images, test_answers)
-    print(precision * 100)
+    print("Precision: " + str(round(precision * 100,2)) + " %")
 
     #print(str(clf.predict(test_images[0])))
 
