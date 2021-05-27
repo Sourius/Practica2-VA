@@ -12,6 +12,7 @@ def getProcessedImage(img_path):
     return cv2.resize(img_eq, crop_dim)
 
 # muestra imagen con titulo
+# recibe el titulo y la imagen
 def printImage(title, img):
     plt.title(title)
     plt.imshow(img)
