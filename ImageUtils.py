@@ -27,7 +27,7 @@ def printImage(title, img):
 def getImages(dir_path, istrain):
     imgs = []
     imgs_types = []
-    for path, subdirs, files in os.walk(dir_path):
+    for path, _, files in os.walk(dir_path):
         for name in files:
             if name.endswith(".ppm"):
                 img_path = os.path.join(path, name)
