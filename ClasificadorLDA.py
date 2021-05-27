@@ -9,7 +9,7 @@ def getPrecision(correct_vals, pred_vals):
     pred_vals = np.array(pred_vals)
     correct_vals = np.array(correct_vals)
     matches = pred_vals == correct_vals
-    return matches.sum() / len(matches)
+    return round((matches.sum() / len(matches)) * 100 , 2)
 
 class ClasificadorLDA:
     #constructor

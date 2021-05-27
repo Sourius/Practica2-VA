@@ -11,8 +11,7 @@ if __name__ == '__main__':
     clf.train(train_images, train_answers)
     
     # predecir con LDA
-    _, precision = clf.predictAll(test_images, test_answers)
-    precision_con_lda = round(precision * 100,2)
+    _, precision_con_lda = clf.predictAll(test_images, test_answers)
     print("Precision: " + str(precision_con_lda) + " %")
 
     # TODO: investigar porque falla --> solo si da tiempo
