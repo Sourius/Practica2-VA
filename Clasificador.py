@@ -26,20 +26,19 @@ class Clasificador:
     def applyHOGAll(self, imgs):
         hog_values = []
         for img in imgs:
-            hog_values.append(self.applyHOG(img))
-        return hog_values
+            hog_value = self.applyHOG(img)
+            hog_values.append(hog_value)
+        return np.array(hog_values)
 
-    def train(self, data, answers):
-        self.lda.fit(self.applyHOGAll(data), answers)
+    def train(self, imgs, answers):
+        self.lda.fit(self.applyHOGAll(imgs), answers)
 
-    def predict(self, data):
-        hog_value = self.applyHOG(data)
+    # TODO: investigar porque falla
+    def predict(self, img):
+        hog_value = self.applyHOG(img)
         return self.lda.predict(hog_value)
 
     def predictAll(self, imgs, answers):
-        print(answers)
-        predictions = []
-        for img in imgs:
-            predictions.append(self.predict(img))
+        hog_values = self.applyHOGAll(imgs)
+        predictions = np.array(self.lda.predict(hog_values))
         return predictions, getPrecision(answers, predictions)
-    

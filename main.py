@@ -8,3 +8,6 @@ if __name__ == '__main__':
     clf.train(train_images, train_answers)
     _, precision = clf.predictAll(test_images, test_answers)
     print(precision * 100)
+
+    #print(str(clf.predict(test_images[0])))
+

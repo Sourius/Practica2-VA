@@ -3,7 +3,6 @@ import Constants
 import os
 import matplotlib.pyplot as plt
 
-
 # devuelve la imagen equalizada recortada
 # recibe la ruta de la imagen
 def getProcessedImage(img_path):
@@ -12,18 +11,15 @@ def getProcessedImage(img_path):
     img_eq = cv2.equalizeHist(original)
     return cv2.resize(img_eq, crop_dim)
 
-
 # muestra imagen con titulo
 def printImage(title, img):
     plt.title(title)
     plt.imshow(img)
     plt.show()
 
-
-# devuelve las rutas todas las imagenes de entrenamiento que hay dentro del directorio y los subdirectorios
-# devuelve los valores de classificacion de todas las imagenes de entrenamiento
-# con 42 tipos de señales
-# recibe la ruta del directorio que contiene las señales de cada tipo separadas en subdirectorios
+# devuelve las imagenes que hay dentro del directorio y los subdirectorios
+# devuelve valores de clasificación de las imagenes, 43 (0 a 42) clases
+# recibe la ruta del directorio y un valor boolean que indica si es ruta de entrenamiento o no
 def getImages(dir_path, istrain):
     imgs = []
     imgs_types = []
@@ -37,6 +33,4 @@ def getImages(dir_path, istrain):
                 else:
                     imgs_types.append(int(name.strip().split('-')[0]))
     return imgs, imgs_types
-
-
 
