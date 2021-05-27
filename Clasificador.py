@@ -22,20 +22,15 @@ class Clasificador:
     def train(self, data, answers):
         self.lda.fit(self.applyHOGAll(data), answers)
 
-    def predict(self, data):
-        return self.lda.predict(self.applyHOG(data))
-
     def applyHOG(self, img):
-        return self.hog.compute(img)
+        return self.hog.compute(img).flatten()
 
     def applyHOGAll(self, imgs):
         hog_values = []
         for img in imgs:
-            hog_values.append(self.applyHOG(img).flatten())
-        return hog_values
+            hog_values.append(self.applyHOG(img))
+        return np.array(hog_values)
 
-    def predictAll(self, imgs, answers):
-        predictions = []
-        for img in imgs:
-            predictions.append(self.predict(img))
+    def predict(self, imgs, answers):
+        predictions = self.lda.predict(self.applyHOGAll(imgs))
         return predictions, getPrecision(answers, predictions)
