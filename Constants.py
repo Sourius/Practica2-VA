@@ -7,3 +7,5 @@ HOG_BLOCK_SIZE = 18
 HOG_BLOCK_STRIDE = 6
 HOG_CELL_SIZE = 3
 HOG_N_BINS = 9
+# parametros para el clasificador KNN
+N_NEIGHBOURS = 5
