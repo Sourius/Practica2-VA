@@ -1,18 +1,20 @@
 import numpy as np
 
+
 # devuelve la precision global de los valores predecidos
 # recibe los valores correctos y los valores predecidos
-def getPrecision(correct_vals, pred_vals):
+def getStats(correct_vals, pred_vals):
     pred_vals = np.array(pred_vals)
     correct_vals = np.array(correct_vals)
     matches = pred_vals == correct_vals
-    return round((matches.sum() / len(matches)) * 100 , 2)
+    # TODO: ampliar stats: precison, tpr, fpr, recall, f1score, matriz
+    return round((matches.sum() / len(matches)) * 100, 2)
+
 
 class Clasificador:
-    def __init__(self, clasificador, descriptor, reductor):
+    def __init__(self, clasificador, descriptor):
         self.clasificador = clasificador
         self.descriptor = descriptor
-        self.reductor = reductor
 
     # devuelve el vector de caracteristicas de la imagen
     # recibe la imagen redimensionada
@@ -32,29 +34,13 @@ class Clasificador:
 
     # entrena el clasificador con las imagenes de entenamiento
     # recibe las imagenes y sus valores de clasificacion
-    def train(self, imgs, answers):
-        eigen_values_list = self.getEigenValuesAll(imgs)
-        if self.reductor is not None:
-            data = self.reductor.transform(eigen_values_list, answers)
-            self.clasificador.fit(data, answers)
-        else:
-            self.clasificador.fit(eigen_values_list, answers)
+    def train(self, data_list, answers):
+        pass
 
-    def predict(self, img):
-        eigen_vectors = self.getEigenVectors(img)
-        return self.clasificador.predict(eigen_vectors)
+    def predict(self, data):
+        pass
 
     # devuelve las predicciones y la precision global de las predicciones
     # recibe las imagenes y sus valores de clasificacion
-    def predictAll(self, imgs, answers):
-        eigen_values_list = self.getEigenValuesAll(imgs)
-        predictions = self.clasificador.predict(eigen_values_list)
-        return predictions, getPrecision(answers, predictions)
-
-    # devuelve los valores reducidos de las imagenes
-    # recibe las imagenes
-    def reduce(self, imgs):
-        if self.reductor is None:
-            return self.clasificador.transform(imgs)
-        else:
-            return self.reductor.transform(imgs)
+    def predictAll(self, data_list):
+        pass

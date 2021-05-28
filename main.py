@@ -1,5 +1,6 @@
-from ClasificadorLDA import ClasificadorLDA
+from Clasificador_LDA_HOG import ClasificadorLDA
 import ImageUtils
+import Clasificador
 
 if __name__ == '__main__':
     lda = ClasificadorLDA() # clasificador LDA
@@ -11,9 +12,8 @@ if __name__ == '__main__':
     lda.train(train_images, train_answers)
     
     # predecir con LDA
-    _, precision_con_lda = lda.predictAll(test_images, test_answers)
-    print("Precision: " + str(precision_con_lda) + " %")
+    predicts = lda.predictAll(test_images)
+    print("Precision: " + str(Clasificador.getStats(test_answers, predicts)) + " %")
 
-    # TODO: investigar porque falla --> solo si da tiempo
     #print(str(clf.predict(test_images[0])))
 
