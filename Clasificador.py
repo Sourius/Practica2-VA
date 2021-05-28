@@ -12,8 +12,9 @@ def getStats(correct_vals, pred_vals):
 
 
 class Clasificador:
-    def __init__(self, clasificador, descriptor):
+    def __init__(self, clasificador, reductor, descriptor):
         self.clasificador = clasificador
+        self.reductor = reductor
         self.descriptor = descriptor
 
     # devuelve el vector de caracteristicas de la imagen
@@ -31,6 +32,10 @@ class Clasificador:
             eigen_vectors = self.getEigenVectors(img)
             eigen_vectors_list.append(eigen_vectors)
         return np.array(eigen_vectors_list)
+
+    def reduce(self, data, answers):
+        self.reductor.fit(data, answers)
+        return self.reductor.transform(data)
 
     # entrena el clasificador con las imagenes de entenamiento
     # recibe las imagenes y sus valores de clasificacion
