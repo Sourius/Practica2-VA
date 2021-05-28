@@ -1,5 +1,3 @@
-from Clasificador_LDA_PCA_HOG import Clasificador_LDA_PCA_HOG
-from Clasificador_KNN_LDA_LBP import Clasificador_KNN_LDA_LBP
 from Clasificador_LDA_LDA_LBP import Clasificador_LDA_LDA_LBP
 from Clasificador_LDA_LDA_HOG import Clasificador_LDA_LDA_HOG
 from Clasificador_KNN_PCA_HOG import Clasificador_KNN_PCA_HOG
