@@ -12,32 +12,27 @@ def getStats(correct_vals, pred_vals):
 
 
 class Clasificador:
-    def __init__(self, clasificador, descriptor):
+    def __init__(self, clasificador, descriptor, reductor):
         self.clasificador = clasificador
         self.descriptor = descriptor
+        self.reductor = reductor
 
     # devuelve el vector de caracteristicas de la imagen
     # recibe la imagen redimensionada
     def getEigenVectors(self, img):
-        eigen_vectors = self.descriptor.compute(img).flatten()
-        eigen_vectors = np.nan_to_num(np.array(eigen_vectors))
-        return eigen_vectors
+        pass
 
     # devuelve los vectores de caracteristicas de varias imagenes
     # recibe imgs, una array con las imagenes
     def getEigenValuesAll(self, imgs):
-        eigen_vectors_list = []
-        for img in imgs:
-            eigen_vectors = self.getEigenVectors(img)
-            eigen_vectors_list.append(eigen_vectors)
-        return np.array(eigen_vectors_list)
+        pass
 
     # entrena el clasificador con las imagenes de entenamiento
     # recibe las imagenes y sus valores de clasificacion
     def train(self, data_list, answers):
         pass
 
-	# devuelve las prediccion de la imagen
+    # devuelve las prediccion de la imagen
     # recibe los valores reducidos de las imagenes
     def predict(self, data):
         pass
@@ -46,3 +41,26 @@ class Clasificador:
     # recibe las imagenes y sus valores de clasificacion
     def predictAll(self, data_list):
         pass
+
+class ClasificadorLDA(Clasificador):
+    def __init__(self, clasificador, descriptor, reductor):
+        Clasificador.__init__(self, clasificador, descriptor, reductor)
+    
+    # entrena el clasificador con las imagenes de entenamiento
+    # recibe los valores reducidos de las imagenes y sus valores de clasificacion
+    def train(self, data_list, answers):
+        eigen_values_list = self.getEigenValuesAll(data_list)
+        self.clasificador.fit(eigen_values_list, answers)
+
+	# devuelve las prediccion de la imagen
+    # recibe los valores reducidos de las imagenes
+    def predict(self, data):
+        preds = self.predictAll([data])
+        return preds[0]
+
+    # devuelve las predicciones de las imagenes
+    # recibe los valores reducidos de las imagenes
+    def predictAll(self, data_list):
+        eigen_values_list = self.getEigenValuesAll(data_list)
+        predictions = self.clasificador.predict(eigen_values_list)
+        return predictions

@@ -1,38 +1,35 @@
-from Clasificador import Clasificador
+from Clasificador import ClasificadorLDA
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 import cv2
 import Constants
+import numpy as np
 
 
-class ClasificadorLDA(Clasificador):
+class ClasificadorLDAHOG(ClasificadorLDA):
     # constructor
     def __init__(self):
         lda = LinearDiscriminantAnalysis()  # lda
         # utilizar vector de caracteristicas hog
         win_size = (Constants.HOG_WIN_SIZE, Constants.HOG_WIN_SIZE)  # tamaño de la imagen
         block_size = (Constants.HOG_BLOCK_SIZE, Constants.HOG_BLOCK_SIZE)  # tamaño del bloque
-        block_stride = (
-            Constants.HOG_BLOCK_STRIDE, Constants.HOG_BLOCK_STRIDE)  # tamaño de desplazamiento entre los bloques
+        block_stride = (Constants.HOG_BLOCK_STRIDE, Constants.HOG_BLOCK_STRIDE)  # tamaño de desplazamiento entre los bloques
         cell_size = (Constants.HOG_CELL_SIZE, Constants.HOG_CELL_SIZE)  # tamaño de las celdas
         hog = cv2.HOGDescriptor(win_size, block_size, block_stride, cell_size, Constants.HOG_N_BINS)  # descriptor hog
         # crear clasificador
-        Clasificador.__init__(self, lda, hog)
+        ClasificadorLDA.__init__(self, lda, hog, None)
 
-    # entrena el clasificador con las imagenes de entenamiento
-    # recibe los valores reducidos de las imagenes y sus valores de clasificacion
-    def train(self, data_list, answers):
-        eigen_values_list = self.getEigenValuesAll(data_list)
-        self.clasificador.fit(eigen_values_list, answers)
+	# devuelve el vector de caracteristicas de la imagen
+    # recibe la imagen redimensionada
+    def getEigenVectors(self, img):
+        eigen_vectors = self.descriptor.compute(img).flatten()
+        eigen_vectors = np.nan_to_num(np.array(eigen_vectors))
+        return eigen_vectors
 
-	# devuelve las prediccion de la imagen
-    # recibe los valores reducidos de las imagenes
-    def predict(self, data):
-        preds = self.predictAll([data])
-        return preds[0]
-
-    # devuelve las predicciones de las imagenes
-    # recibe los valores reducidos de las imagenes
-    def predictAll(self, data_list):
-        eigen_values_list = self.getEigenValuesAll(data_list)
-        predictions = self.clasificador.predict(eigen_values_list)
-        return predictions
+    # devuelve los vectores de caracteristicas de varias imagenes
+    # recibe imgs, una array con las imagenes
+    def getEigenValuesAll(self, imgs):
+        eigen_vectors_list = []
+        for img in imgs:
+            eigen_vectors = self.getEigenVectors(img)
+            eigen_vectors_list.append(eigen_vectors)
+        return np.array(eigen_vectors_list)
