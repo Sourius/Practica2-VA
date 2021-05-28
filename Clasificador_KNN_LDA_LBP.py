@@ -1,11 +1,10 @@
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 from sklearn.neighbors import KNeighborsClassifier
 from Clasificador import Clasificador
-import Constants
 
 class Clasificador_KNN_LDA_LBP(Clasificador):
-    def __init__(self):
-        knn = KNeighborsClassifier(n_neighbors=Constants.N_NEIGHBOURS)
+    def __init__(self, k):
+        knn = KNeighborsClassifier(n_neighbors=k)
         lda = LinearDiscriminantAnalysis()
         # se utiliza directamente el algoritmo, descriptor = None
         super().__init__(knn, lda, None)
