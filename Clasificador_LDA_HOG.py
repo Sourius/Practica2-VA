@@ -16,7 +16,7 @@ class ClasificadorLDAHOG(ClasificadorLDA):
         cell_size = (Constants.HOG_CELL_SIZE, Constants.HOG_CELL_SIZE)  # tamaño de las celdas
         hog = cv2.HOGDescriptor(win_size, block_size, block_stride, cell_size, Constants.HOG_N_BINS)  # descriptor hog
         # crear clasificador
-        ClasificadorLDA.__init__(self, lda, hog, None)
+        super().__init__(lda, hog, None)
 
 	# devuelve el vector de caracteristicas de la imagen
     # recibe la imagen redimensionada

@@ -8,7 +8,7 @@ class ClasificadorLDALBP(ClasificadorLDA):
     def __init__(self):
         lda = LinearDiscriminantAnalysis()  # lda
         # crear clasificador
-        ClasificadorLDA.__init__(self, lda, None, None)
+        super().__init__(lda, None, None)
 
 	# devuelve el vector de caracteristicas de la imagen
     # recibe la imagen redimensionada
