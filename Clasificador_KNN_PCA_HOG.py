@@ -7,7 +7,7 @@ import Constants
 class Clasificador_KNN_PCA_HOG(Clasificador):
     def __init__(self):
         # clasificador KNN
-        knn = KNeighborsClassifier(n_neighbors=16)
+        knn = KNeighborsClassifier(n_neighbors=Constants.N_NEIGHBOURS)
 
         # utilizar vector de caracteristicas hog
         win_size = (Constants.HOG_WIN_SIZE, Constants.HOG_WIN_SIZE)  # tamaño de la imagen
