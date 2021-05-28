@@ -5,20 +5,19 @@ from Clasificador import Clasificador
 import Constants
 
 class Clasificador_KNN_PCA_HOG(Clasificador):
-    def __init__(self, n):
+    def __init__(self):
         # clasificador KNN
         knn = KNeighborsClassifier(n_neighbors=Constants.N_NEIGHBOURS)
-		
-		# reduccon de dimensionalidad con PCA
-        pca = PCA(n, svd_solver='full')
-        
-		# utilizar vector de caracteristicas hog
+
+        # utilizar vector de caracteristicas hog
         win_size = (Constants.HOG_WIN_SIZE, Constants.HOG_WIN_SIZE)  # tamaño de la imagen
         block_size = (Constants.HOG_BLOCK_SIZE, Constants.HOG_BLOCK_SIZE)  # tamaño del bloque
         block_stride = (Constants.HOG_BLOCK_STRIDE, Constants.HOG_BLOCK_STRIDE)  # tamaño de desplazamiento entre los bloques
         cell_size = (Constants.HOG_CELL_SIZE, Constants.HOG_CELL_SIZE)  # tamaño de las celdas
         hog = cv2.HOGDescriptor(win_size, block_size, block_stride, cell_size, Constants.HOG_N_BINS)  # descriptor hog
-		
+
+        # reduccon de dimensionalidad con PCA
+        pca = PCA(121, svd_solver='full')
         super().__init__(knn, pca, hog)
 
     # devuelve los vectores de caracteristicas de varias imagenes
