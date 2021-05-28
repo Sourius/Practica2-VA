@@ -1,9 +1,9 @@
 from skimage.feature import local_binary_pattern
-from Clasificador import ClasificadorLDA
+from Clasificador_LDA import Clasificador_LDA
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 import numpy as np
 
-class ClasificadorLDALBP(ClasificadorLDA):
+class Clasificador_LDA_LDA_LBP(Clasificador_LDA):
     # constructor
     def __init__(self):
         lda = LinearDiscriminantAnalysis()  # lda
@@ -18,11 +18,3 @@ class ClasificadorLDALBP(ClasificadorLDA):
         eigen_vectors = np.nan_to_num(np.array(eigen_vectors).flatten())
         return eigen_vectors
 
-    # devuelve los vectores de caracteristicas de varias imagenes
-    # recibe imgs, una array con las imagenes
-    def getEigenValuesAll(self, imgs):
-        eigen_vectors_list = []
-        for img in imgs:
-            eigen_vectors = self.getEigenVectors(img)
-            eigen_vectors_list.append(eigen_vectors)
-        return np.array(eigen_vectors_list)

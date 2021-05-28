@@ -1,11 +1,11 @@
-from Clasificador import ClasificadorLDA
+from Clasificador_LDA import Clasificador_LDA
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
 import cv2
 import Constants
 import numpy as np
 
 
-class ClasificadorLDAHOG(ClasificadorLDA):
+class Clasificador_LDA_LDA_HOG(Clasificador_LDA):
     # constructor
     def __init__(self):
         lda = LinearDiscriminantAnalysis()  # lda
@@ -16,7 +16,7 @@ class ClasificadorLDAHOG(ClasificadorLDA):
         cell_size = (Constants.HOG_CELL_SIZE, Constants.HOG_CELL_SIZE)  # tamaño de las celdas
         hog = cv2.HOGDescriptor(win_size, block_size, block_stride, cell_size, Constants.HOG_N_BINS)  # descriptor hog
         # crear clasificador
-        super().__init__(lda, hog, None)
+        super().__init__(lda, None, hog)
 
 	# devuelve el vector de caracteristicas de la imagen
     # recibe la imagen redimensionada
@@ -24,12 +24,4 @@ class ClasificadorLDAHOG(ClasificadorLDA):
         eigen_vectors = self.descriptor.compute(img).flatten()
         eigen_vectors = np.nan_to_num(np.array(eigen_vectors))
         return eigen_vectors
-
-    # devuelve los vectores de caracteristicas de varias imagenes
-    # recibe imgs, una array con las imagenes
-    def getEigenValuesAll(self, imgs):
-        eigen_vectors_list = []
-        for img in imgs:
-            eigen_vectors = self.getEigenVectors(img)
-            eigen_vectors_list.append(eigen_vectors)
-        return np.array(eigen_vectors_list)
+		
