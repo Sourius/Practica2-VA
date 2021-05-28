@@ -1,9 +1,6 @@
-from Clasificador import Clasificador
 from sklearn.discriminant_analysis import LinearDiscriminantAnalysis
-from skimage.feature import local_binary_pattern
 from sklearn.neighbors import KNeighborsClassifier
-import numpy as np
-
+from Clasificador import Clasificador
 
 class Clasificador_KNN_LDA_LBP(Clasificador):
     def __init__(self, k):
@@ -15,17 +12,14 @@ class Clasificador_KNN_LDA_LBP(Clasificador):
     # devuelve el vector de caracteristicas de la imagen
     # recibe la imagen redimensionada
     def getEigenVectors(self, img):
-        eigen_vectors = local_binary_pattern(img, 8, 4).flatten()
-        eigen_vectors = np.nan_to_num(np.array(eigen_vectors))
-        return eigen_vectors
+        return self._getLBPEigenVectors(img)
 
     def train(self, data_list, answers):
         eigen_vectors = self.getEigenValuesAll(data_list)
-        self.reductor.fit(eigen_vectors, answers)
-        reduced_values = self.reductor.transform(eigen_vectors)
-        self.clasificador.fit(reduced_values, answers)   
+        reduced_values = self._reduceValues(eigen_vectors, answers)
+        self._train(reduced_values, answers) 
 
     def predictAll(self, data_list):
         eigen_vectors = self.getEigenValuesAll(data_list)
-        reduced_values = self.reductor.transform(eigen_vectors)
-        return self.clasificador.predict(reduced_values)
+        reduced_values = self._reduceValues(eigen_vectors, None)
+        return self._predictAll(reduced_values)
