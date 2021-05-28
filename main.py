@@ -15,5 +15,4 @@ if __name__ == '__main__':
     predicts = lda.predictAll(test_images)
     print("Precision: " + str(Clasificador.getStats(test_answers, predicts)) + " %")
 
-    #print(str(clf.predict(test_images[0])))
 

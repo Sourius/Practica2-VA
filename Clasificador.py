@@ -37,6 +37,8 @@ class Clasificador:
     def train(self, data_list, answers):
         pass
 
+	# devuelve las prediccion de la imagen
+    # recibe los valores reducidos de las imagenes
     def predict(self, data):
         pass
 
