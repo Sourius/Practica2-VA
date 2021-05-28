@@ -34,7 +34,7 @@ class Clasificador:
         pass
 
     # devuelve los vectores de caracteristicas de varias imagenes
-    # recibe imgs, una array con las imagenes
+    # recibe imgs, una array con las imagenes redimensionadas
     def getEigenValuesAll(self, imgs):
         eigen_vectors_list = []
         for img in imgs:
@@ -44,8 +44,7 @@ class Clasificador:
         return np.array(eigen_vectors_list)
 
     # devuelve los valores reducidos de vector de caracteristicas
-    # recibe las lista de los vectores de caracteristicas
-    # recibe la lista de valores de clasificación
+    # recibe las lista de los vectores de caracteristicasy los valores de clasificación
     def _reduceValues(self, eigen_vectors_list, answers):
         if answers is not None:
             return self.reductor.fit_transform(eigen_vectors_list, answers)
@@ -53,25 +52,27 @@ class Clasificador:
             return self.reductor.transform(eigen_vectors_list)
 
     # entrena el clasificador con las imagenes de entenamiento
-    # recibe las imagenes y sus valores de clasificacion
+    # recibe la lista de vectores de caracteristicas y sus valores de clasificacion
     def train(self, eigen_vectors, answers):
         pass
 
     # entrena el clasificador con las imagenes de entenamiento
-    # recibe las imagenes y sus valores de clasificacion
+    # recibe los valores reducidos y los valores de clasificación
     def _train(self, reduced_values, answers):
         self.clasificador.fit(reduced_values, answers) 
 
     # devuelve las prediccion de una imagen
-    # recibe los valores reducidos de la imagen
+    # recibe la imagen
     def predict(self, data):
         preds = self.predictAll([data])
         return preds[0]
 
     # devuelve las predicciones de las imagenes
-    # recibe los valores reducidos de las imagenes
+    # recibe las imagenes
     def predictAll(self, imgs):
         pass
 
+	# devuelve las predicciones de las imagenes
+    # recibe los valores reducidos de las imagenes
     def _predictAll(self, reduced_values):
         return self.clasificador.predict(reduced_values)
