@@ -31,9 +31,13 @@ class Clasificador:
             eigen_vectors_list.append(eigen_vectors)
         return np.array(eigen_vectors_list)
 
-    def reduce(self, data, answers):
-        self.reductor.fit(data, answers)
-        return self.reductor.transform(data)
+    # devuelve los valores reducidos de vector de caracteristicas
+    # recibe las lista de los vectores de caracteristicas y los valores de clasificación
+    def _reduceValues(self, eigen_vectors_list, answers):
+        if answers is not None:
+            return self.reductor.fit_transform(eigen_vectors_list, answers)
+        else:
+            return self.reductor.transform(eigen_vectors_list)
 
     # entrena el clasificador con las imagenes de entenamiento
     # recibe las imagenes y sus valores de clasificacion
@@ -46,7 +50,7 @@ class Clasificador:
         preds = self.predictAll([data])
         return preds[0]
 
-    # devuelve las predicciones y la precision global de las predicciones
-    # recibe las imagenes y sus valores de clasificacion
+    # devuelve las predicciones de las imagenes
+    # recibe las imagenes
     def predictAll(self, data_list):
         pass
