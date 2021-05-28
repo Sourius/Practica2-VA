@@ -44,7 +44,7 @@ class Clasificador:
         return np.array(eigen_vectors_list)
 
     # devuelve los valores reducidos de vector de caracteristicas
-    # recibe las lista de los vectores de caracteristicasy los valores de clasificación
+    # recibe las lista de los vectores de caracteristicas y los valores de clasificación
     def _reduceValues(self, eigen_vectors_list, answers):
         if answers is not None:
             return self.reductor.fit_transform(eigen_vectors_list, answers)
@@ -52,8 +52,8 @@ class Clasificador:
             return self.reductor.transform(eigen_vectors_list)
 
     # entrena el clasificador con las imagenes de entenamiento
-    # recibe la lista de vectores de caracteristicas y sus valores de clasificacion
-    def train(self, eigen_vectors, answers):
+    # recibe las imagenes y sus valores de clasificacion
+    def train(self, data_list, answers):
         pass
 
     # entrena el clasificador con las imagenes de entenamiento
@@ -69,7 +69,7 @@ class Clasificador:
 
     # devuelve las predicciones de las imagenes
     # recibe las imagenes
-    def predictAll(self, imgs):
+    def predictAll(self, data_list):
         pass
 
 	# devuelve las predicciones de las imagenes
