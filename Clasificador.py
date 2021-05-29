@@ -57,8 +57,7 @@ class Clasificador:
     # devuelve el vector de caracteristicas lbp de la imagen
     # recibe la imagen redimensionada
     def _getLBPEigenVectors(self, img):
-        # TODO: averiguar segundo parametro
-        return local_binary_pattern(img, 8, 4)  # LBP
+        return local_binary_pattern(img, Constants.LBP_NEIGHBOURS, Constants.LBP_RADIUS)  # LBP
 
     # devuelve el vector de caracteristicas hog de la imagen
     # recibe la imagen redimensionada

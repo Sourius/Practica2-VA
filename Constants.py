@@ -11,3 +11,6 @@ HOG_N_BINS = 9
 N_NEIGHBOURS = 4
 RESULTS_FILE = "resultado.txt"  # fichero de texto donde se guardan las detecciones
 RESULTS_DIR = "resultados"
+# parametros para lbp
+LBP_NEIGHBOURS = 8
+LBP_RADIUS = 4
