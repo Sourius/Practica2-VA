@@ -6,10 +6,8 @@ from Clasificador_KNN_LDA_LBP import Clasificador_KNN_LDA_LBP
 from Clasificador_KNN_LDA_HOG import Clasificador_KNN_LDA_HOG
 from Clasificador_KNN_PCA_HOG import Clasificador_KNN_PCA_HOG
 from Clasificador_KNN_PCA_LBP import Clasificador_KNN_PCA_LBP
-
 import argparse
 import ImageUtils
-import Clasificador
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Entrena sober train y ejecuta el clasificador sobre imgs de test')

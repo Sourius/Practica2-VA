@@ -27,17 +27,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="44e2bd1a-c03a-41ae-a022-c4a6ffd9b22f" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/Clasificador.py" beforeDir="false" afterPath="$PROJECT_DIR$/Clasificador.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clasificador_KNN_LDA_HOG.py" beforeDir="false" afterPath="$PROJECT_DIR$/Clasificador_KNN_LDA_HOG.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clasificador_KNN_LDA_LBP.py" beforeDir="false" afterPath="$PROJECT_DIR$/Clasificador_KNN_LDA_LBP.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clasificador_KNN_PCA_HOG.py" beforeDir="false" afterPath="$PROJECT_DIR$/Clasificador_KNN_PCA_HOG.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clasificador_KNN_PCA_LBP.py" beforeDir="false" afterPath="$PROJECT_DIR$/Clasificador_KNN_PCA_LBP.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clasificador_LDA_LDA_HOG.py" beforeDir="false" afterPath="$PROJECT_DIR$/Clasificador_LDA_LDA_HOG.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clasificador_LDA_LDA_LBP.py" beforeDir="false" afterPath="$PROJECT_DIR$/Clasificador_LDA_LDA_LBP.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clasificador_LDA_PCA_HOG.py" beforeDir="false" afterPath="$PROJECT_DIR$/Clasificador_LDA_PCA_HOG.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Clasificador_LDA_PCA_LBP.py" beforeDir="false" afterPath="$PROJECT_DIR$/Clasificador_LDA_PCA_LBP.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/Constants.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/ImageUtils.py" beforeDir="false" afterPath="$PROJECT_DIR$/ImageUtils.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -114,7 +103,7 @@
       <workItem from="1622187764136" duration="11876000" />
       <workItem from="1622236479815" duration="11739000" />
       <workItem from="1622250511449" duration="200000" />
-      <workItem from="1622274459296" duration="3285000" />
+      <workItem from="1622274459296" duration="3384000" />
     </task>
     <servers />
   </component>
