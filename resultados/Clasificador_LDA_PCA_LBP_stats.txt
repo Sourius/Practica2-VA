@@ -1,4 +1,0 @@
-Clasificador_LDA_PCA_LBP
-Precision: 0.904
-Recall: 0.904
-F1 score: 0.8975

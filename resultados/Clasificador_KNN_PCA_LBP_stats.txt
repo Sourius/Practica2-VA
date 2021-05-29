@@ -1,4 +1,0 @@
-Clasificador_KNN_PCA_LBP
-Precision: 0.6058
-Recall: 0.6058
-F1 score: 0.6037
