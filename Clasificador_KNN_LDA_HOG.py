@@ -26,8 +26,8 @@ class Clasificador_KNN_LDA_HOG(Clasificador):
     def getEigenVectors(self, img):
         return self._getHOGEigenVectors(img)
 
-    def train(self, data_list, answers):
-        super().train(data_list, answers)
+    def train(self, imgs, answers):
+        self._train(imgs, answers)
 
-    def predictAll(self, data_list):
-        return super().predictAll(data_list)
+    def predictAll(self, imgs):
+        return self._predictAll(imgs)

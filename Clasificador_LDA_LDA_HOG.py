@@ -22,9 +22,9 @@ class Clasificador_LDA_LDA_HOG(Clasificador):
     def getEigenVectors(self, img):
         return self._getHOGEigenVectors(img)
 
-    def train(self, data_list, answers):
-        super().lda_train(data_list, answers)
+    def train(self, imgs, answers):
+        self._lda_lda_train(imgs, answers)
 
-    def predictAll(self, data_list):
-        return super().lda_predictAll(data_list)
+    def predictAll(self, imgs):
+        return self._lda_lda_predictAll(imgs)
 

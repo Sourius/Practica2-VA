@@ -70,7 +70,7 @@ class Clasificador:
         pass
 
     # devuelve los vectores de caracteristicas de varias imagenes
-    # recibe imgs, una array con las imagenes redimensionadas
+    # recibe un array con las imagenes redimensionadas
     def getEigenValuesAll(self, imgs):
         eigen_vectors_list = []
         for img in imgs:
@@ -80,7 +80,7 @@ class Clasificador:
         return np.array(eigen_vectors_list)
 
     # devuelve los valores reducidos de vector de caracteristicas
-    # recibe las lista de los vectores de caracteristicasy los valores de clasificación
+    # recibe las lista de los vectores de caracteristicas y los valores de clasificación
     def reduceValues(self, eigen_vectors_list, answers):
         if answers is not None:
             return self.reductor.fit_transform(eigen_vectors_list, answers)
@@ -89,12 +89,15 @@ class Clasificador:
 
     # entrena el clasificador con las imagenes de entenamiento
     # recibe la lista de vectores de caracteristicas y sus valores de clasificacion
-    def train(self, data, answers):
-        eigen_vectors = self.getEigenValuesAll(data)
+    def train(self, imgs, answers):
+        pass
+    
+    def _train(self, imgs, answers):
+        eigen_vectors = self.getEigenValuesAll(imgs)
         reduced_values = self.reduceValues(eigen_vectors, answers)
         self.clasificador.fit(reduced_values, answers)
 
-    def lda_train(self, data, answers):
+    def _lda_lda_train(self, data, answers):
         eigen_vectors = self.getEigenValuesAll(data)
         self.clasificador.fit(eigen_vectors, answers)
 
@@ -106,11 +109,14 @@ class Clasificador:
 
     # devuelve las predicciones de las imagenes
     # recibe las imagenes
-    def predictAll(self, data):
-        eigen_vectors = self.getEigenValuesAll(data)
+    def predictAll(self, imgs):
+        pass
+
+    def _predictAll(self, imgs):
+        eigen_vectors = self.getEigenValuesAll(imgs)
         reduced_values = self.reduceValues(eigen_vectors, None)
         return self.clasificador.predict(reduced_values)
 
-    def lda_predictAll(self, data):
-        eigen_vectors = self.getEigenValuesAll(data)
+    def _lda_lda_predictAll(self, imgs):
+        eigen_vectors = self.getEigenValuesAll(imgs)
         return self.clasificador.predict(eigen_vectors)
