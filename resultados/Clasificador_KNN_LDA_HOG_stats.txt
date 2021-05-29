@@ -1,0 +1,4 @@
+Clasificador_KNN_LDA_HOG
+Precision: 0.9167
+Recall: 0.9167
+F1 score: 0.9259

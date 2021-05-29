@@ -1,0 +1,4 @@
+Clasificador_KNN_LDA_LBP
+Precision: 0.7981
+Recall: 0.7981
+F1 score: 0.7997

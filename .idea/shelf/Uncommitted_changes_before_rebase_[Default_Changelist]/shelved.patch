@@ -1,0 +1,46 @@
+Index: main.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>from Clasificador_LDA_LDA_HOG import Clasificador_LDA_LDA_HOG\nfrom Clasificador_LDA_LDA_LBP import Clasificador_LDA_LDA_LBP\nfrom Clasificador_LDA_PCA_HOG import Clasificador_LDA_PCA_HOG\nfrom Clasificador_KNN_PCA_HOG import Clasificador_KNN_PCA_HOG\nfrom Clasificador_KNN_LDA_LBP import Clasificador_KNN_LDA_LBP\n<<<<<<< HEAD\n=======\nfrom Clasificador_KNN_LDA_HOG import Clasificador_KNN_LDA_HOG\n>>>>>>> parent of d3014aa (more classifiers + update main)\n\nimport ImageUtils\nimport Clasificador\n\nif __name__ == '__main__':\n    # cargar imagenes de entrenamiento y test\n    train_images, train_answers = ImageUtils.getImages('train_recortadas', True)\n    test_images, test_answers = ImageUtils.getImages('test_reconocimiento', False)\n<<<<<<< HEAD\n    \n    lda_hog = Clasificador_LDA_LDA_HOG() # clasificador LDA\n    # entrenar\n    lda_hog.train(train_images, train_answers)\n    # predecir\n    predicts_lda_hog = lda_hog.predictAll(test_images)\n    precision_lda_hog = Clasificador.getStats(test_answers, predicts_lda_hog)\n    print(\"Precision LDA LDA HOG: \" + str(precision_lda_hog) + \" %\")\n    \n    lda_lda_lbp = Clasificador_LDA_LDA_LBP()\n    # train\n    lda_lda_lbp.train(train_images, train_answers)\n    predicts_lda_lda_lbp = lda_lda_lbp.predictAll(test_images)\n    precision_lda_lda_lbp = Clasificador.getStats(test_answers, predicts_lda_lda_lbp)\n    print(\"Precision LDA LDA LBP: \"+str(precision_lda_lda_lbp) + \"%\")\n    \n    knn_pca = Clasificador_KNN_PCA_HOG()\n    knn_pca.train(train_images, train_answers)\n    predicts_knn_pca = knn_pca.predictAll(test_images)\n    precision_knn_pca = Clasificador.getStats(test_answers, predicts_knn_pca)\n    print(\"Precision KNN PCA HOG: \"+str(precision_knn_pca) + \" %\")\n    \n    knn_lda = Clasificador_KNN_LDA_LBP()\n    knn_lda.train(train_images, train_answers)\n    predicts_knn_lda = knn_lda.predictAll(test_images)\n    precision_knn_lda = Clasificador.getStats(test_answers, predicts_knn_lda)\n    print(\"Precision KNN LDA LBP: \"+str(precision_knn_lda) + \" %\")\n    \n    n = min(len(train_images), len(test_images))\n    lda_pca_hog = Clasificador_LDA_PCA_HOG(n)\n    lda_pca_hog.train(train_images, train_answers)\n    predicts_lda_pca_hog = lda_pca_hog.predictAll(test_images)\n    precision_lda_pca_hog = Clasificador.getStats(test_answers, predicts_lda_pca_hog)\n    print(\"Precision KNN LDA LBP: \"+str(precision_lda_pca_hog) + \" %\")\n=======\n    \n    parser = argparse.ArgumentParser(description='Trains and executes a given classifier over a set of testing images')\n    parser.add_argument('--clasificador', default=\"clasificador_lda_lda_hog\", help='Classifier string name')\n\n    # obtener los argumentos\n    args = parser.parse_args()\n\n    clasificador = args.clasificador.lower()\n    print(clasificador.upper())\n\n    if(clasificador == \"clasificador_lda_lda_hog\"):\n        clf = Clasificador_LDA_LDA_HOG() # clasificador LDA_LDA_HOG\n        \n    if(clasificador == \"clasificador_lda_lda_lbp\"):\n        clf = Clasificador_LDA_LDA_LBP() # clasificador LDA_LDA_LBP\n\n    if(clasificador == \"clasificador_lda_pca_hog\"):\n        n = min(len(train_images), len(test_images)) \n        clf = Clasificador_LDA_PCA_HOG(n)# clasificador LDA_PCA_HOG\n\n    if(clasificador == \"clasificador_knn_lda_hog\"):\n        clf = Clasificador_KNN_LDA_HOG()# clasificador KNN_LDA_HOG\n    \n    if(clasificador == \"clasificador_knn_lda_lbp\"):\n        clf = Clasificador_KNN_LDA_LBP()# clasificador KNN_LDA_LBP\n    \n    if(clasificador == \"clasificador_knn_pca_hog\"):\n        clf = Clasificador_KNN_PCA_HOG()# clasificador KNN_PCA_HOG\n    \n    clf.train(train_images, train_answers)# entrenamiento\n    predicts = clf.predictAll(test_images)# predección\n    precision = Clasificador.getStats(test_answers, predicts)\n    print(\"Precision: \" + str(precision) + \" %\")\n>>>>>>> parent of d3014aa (more classifiers + update main)\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- main.py	(revision 3d6df8f8c3697daca30b7abb7142674ccb1de02a)
++++ main.py	(date 1622238032722)
+@@ -6,6 +6,9 @@
+ <<<<<<< HEAD
+ =======
+ from Clasificador_KNN_LDA_HOG import Clasificador_KNN_LDA_HOG
++<<<<<<< HEAD
++>>>>>>> parent of d3014aa (more classifiers + update main)
++=======
+ >>>>>>> parent of d3014aa (more classifiers + update main)
+ 
+ import ImageUtils
+@@ -16,6 +19,7 @@
+     train_images, train_answers = ImageUtils.getImages('train_recortadas', True)
+     test_images, test_answers = ImageUtils.getImages('test_reconocimiento', False)
+ <<<<<<< HEAD
++<<<<<<< HEAD
+     
+     lda_hog = Clasificador_LDA_LDA_HOG() # clasificador LDA
+     # entrenar
+@@ -51,6 +55,8 @@
+     precision_lda_pca_hog = Clasificador.getStats(test_answers, predicts_lda_pca_hog)
+     print("Precision KNN LDA LBP: "+str(precision_lda_pca_hog) + " %")
+ =======
++=======
++>>>>>>> parent of d3014aa (more classifiers + update main)
+     
+     parser = argparse.ArgumentParser(description='Trains and executes a given classifier over a set of testing images')
+     parser.add_argument('--clasificador', default="clasificador_lda_lda_hog", help='Classifier string name')
+@@ -83,5 +89,9 @@
+     clf.train(train_images, train_answers)# entrenamiento
+     predicts = clf.predictAll(test_images)# predección
+     precision = Clasificador.getStats(test_answers, predicts)
++<<<<<<< HEAD
++    print("Precision: " + str(precision) + " %")
++>>>>>>> parent of d3014aa (more classifiers + update main)
++=======
+     print("Precision: " + str(precision) + " %")
+ >>>>>>> parent of d3014aa (more classifiers + update main)

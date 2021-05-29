@@ -1,0 +1,4 @@
+Clasificador_KNN_PCA_HOG
+Precision: 0.8563
+Recall: 0.8563
+F1 score: 0.8605

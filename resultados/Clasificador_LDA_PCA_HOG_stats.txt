@@ -1,0 +1,4 @@
+Clasificador_LDA_PCA_HOG
+Precision: 0.996
+Recall: 0.996
+F1 score: 0.9957
