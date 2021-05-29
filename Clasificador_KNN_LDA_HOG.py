@@ -26,12 +26,12 @@ class Clasificador_KNN_LDA_HOG(Clasificador):
     def getEigenVectors(self, img):
         return self._getHOGEigenVectors(img)
 
-    def train(self, data_list, answers):
-        eigen_vectors_list = self.getEigenValuesAll(data_list)
+    def train(self, imgs, answers):
+        eigen_vectors_list = self.getEigenValuesAll(imgs)
         reduced_values = self._reduceValues(eigen_vectors_list, answers)
         self._train(reduced_values, answers) 
 
-    def predictAll(self, data_list):
-        eigen_vectors_list = self.getEigenValuesAll(data_list)
+    def predictAll(self, imgs):
+        eigen_vectors_list = self.getEigenValuesAll(imgs)
         reduced_values = self._reduceValues(eigen_vectors_list, None)
         return self._predictAll(reduced_values)
